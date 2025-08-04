@@ -1,0 +1,41 @@
+
+.NavBarMain {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #282c34;
+   color: white;
+
+}
+
+.NavBarTitle {
+  font-size: 2em;
+  margin: 0;
+}
+
+.NavBarTitle a {
+  color: white;
+  text-decoration: none;
+}
+.NavBarTitle :hover {
+  color: #61dafb;
+  text-decoration: none;
+}
+
+.NavBarLinks {
+  display: flex;
+  gap: 1rem;
+}
+
+
+.NavBarLinks a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+.NavBarLinks a:hover {
+  color: #61dafb;
+  text-decoration: underline;
+
+}
