@@ -1,5 +1,5 @@
 import { useState } from "react";
-import uploadBlogPost from "../services/api";
+import { uploadBlogPost } from "../services/api";
 
 
 const UploadBlog = () => {
