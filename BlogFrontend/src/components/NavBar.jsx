@@ -30,6 +30,7 @@ const NavBar = () => {
             <Link to="/" >Home</Link>
             {isLoggedIn ? (
                 <>
+                {user.isAdmin && <Link to="/upload">Upload Blog</Link>}
                 <Link to="/" onClick={handleLogout}>LogOut</Link>
                 </>
             ) : (

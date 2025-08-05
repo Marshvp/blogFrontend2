@@ -21,14 +21,14 @@ export async function loginUser(email, password) {
     return data;
 }
 
-export async function signUpUser(email, username, password) {
+export async function signUpUser(email, username, password, isAdmin) {
     console.log('Signing up with:', { email, username, password });
     const response = await fetch('http://localhost:1231/api/auth/signup', {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, username, password })
+        body: JSON.stringify({ email, username, password, isAdmin})
     });
 
     const data = await response.json();
