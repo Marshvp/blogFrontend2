@@ -44,3 +44,34 @@ export async function fetchBlogPosts() {
     }
 
 }
+
+
+
+export async function fetchSingleBlogInfo(id) {
+    try{
+        const response = await fetch(`${api}/blogs/${id}`);
+        const data = await response.json();
+        if (!response.ok) {
+            throw new Error(data.message || 'Failed to fetch blog post');
+        }
+
+        return data;
+    } catch (error) {
+        console.error("Error fetching single blog post:", error);
+        throw error;
+    }
+}
+
+export async function fetchSingleBlogPostContent(filePath) {
+    try{
+        const response = await fetch(`http://localhost:1231/${filePath}`);
+        if (!response.ok) {
+            throw new Error('Failed to fetch blog post content');
+        }
+        const text = await response.text();
+        return text;
+    } catch (error) {
+        console.error("Error fetching single blog post content:", error);
+        throw error;
+    }
+}
