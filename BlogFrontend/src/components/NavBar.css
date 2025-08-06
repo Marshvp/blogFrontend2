@@ -1,41 +1,59 @@
-
 .NavBarMain {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  padding: 1rem;
   background-color: #282c34;
-   color: white;
-
+  color: white;
+  padding: 1rem;
 }
 
 .NavBarTitle {
-  font-size: 2em;
-  margin: 0;
+  font-size: 1.8em;
+  margin-bottom: 0.5rem;
 }
 
 .NavBarTitle a {
   color: white;
   text-decoration: none;
 }
-.NavBarTitle :hover {
+
+.NavBarTitle a:hover {
   color: #61dafb;
   text-decoration: none;
 }
 
 .NavBarLinks {
   display: flex;
-  gap: 1rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
 }
 
-
-.NavBarLinks a {
+.NavBarLinks a,
+.NavBarLinks span {
   color: white;
   text-decoration: none;
   font-weight: 500;
 }
+
 .NavBarLinks a:hover {
   color: #61dafb;
   text-decoration: underline;
+}
 
+/* Tablet & Desktop Layout */
+@media screen and (min-width: 768px) {
+  .NavBarMain {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .NavBarTitle {
+    margin: 0 2rem;
+  }
+
+  .NavBarLinks {
+    flex-direction: row;
+    margin: 0 2rem;
+  }
 }

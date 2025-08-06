@@ -75,3 +75,18 @@ export async function fetchSingleBlogPostContent(filePath) {
         throw error;
     }
 }
+
+
+export async function fetchComments(blogId) {
+    try {
+        const response = await fetch(`${api}/comments/${blogId}`);
+        const data = await response.json();
+        if (!response.ok) {
+            throw new Error(data.message || 'Failed to fetch comments');
+        }
+        return data;
+    } catch (error) {
+        console.error("Error fetching comments:", error);
+        throw error;
+    }
+}

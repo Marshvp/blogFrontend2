@@ -2,6 +2,7 @@ import Markdown from 'react-markdown'
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import {  fetchSingleBlogPostContent, fetchSingleBlogInfo } from '../services/api';
+import Comments from '../components/Comments';
 
 
 const BlogPostPage = () => {
@@ -40,8 +41,9 @@ const BlogPostPage = () => {
     <div style={{ padding: "2rem", maxWidth: "80%", margin: "2rem auto" }}>
       <h1>{blog ? blog.title : 'Loading...'}</h1>
       <p>{blog ? blog.description : 'Loading description...'}</p>
-      <p><strong>Author:</strong> {blog ? blog.author : 'Loading author'}</p>
+      <p><strong>Author:</strong> <strong>{blog ? blog.author.userName : 'Loading author'}</strong></p>
       <Markdown>{content}</Markdown>
+      <Comments blogId={blog.id} />
   </div>)
 
 }

@@ -21,11 +21,9 @@ const NavBar = () => {
                 <h1 className= "NavBarTitle">Marshall's Blog</h1>
             </Link>
             <div className= "NavBarLinks">
-            {isLoggedIn ?  (
-                <span>Welcome, {user ? user.userName : 'User'}</span>
-            ) : (
-                <span>Welcome, Guest</span>
-            )}
+            <span>
+                {isLoggedIn ? `Welcome, ${user.userName}` : 'Welcome, Guest!'}
+            </span>
             <br />
             <Link to="/" >Home</Link>
             {isLoggedIn ? (
