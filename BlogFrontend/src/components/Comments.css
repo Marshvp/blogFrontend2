@@ -69,3 +69,8 @@
     font-size: 0.9rem;
   }
 }
+.comment-item { margin-bottom: .75rem; }
+.replies-list { margin-left: 1rem; border-left: 2px solid #eee; padding-left: .75rem; }
+.reply-button { margin-top: .25rem; }
+.reply-form textarea { width: 100%; min-height: 70px; }
+.reply-actions { display: flex; gap: .5rem; margin-top: .25rem; }

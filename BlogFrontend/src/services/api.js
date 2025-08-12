@@ -117,3 +117,28 @@ export async function createNewComment(blogId, message) {
         
     }
 }
+
+export async function createCommentReply(blogId, message, parentId) {
+    const token = localStorage.getItem('token');
+    if(!token) {
+        throw new Error('User is not authenticated. Please log in.');
+    }
+    try {
+        const response = await fetch(`${api}/comments/create/${blogId}`, {
+            method: 'POST',
+            headers: {
+                "content-type": "application/json",
+                Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify({ commentMessage: message, parentId: parentId })
+        })
+        const data = await response.json();
+        if(!response.ok) {
+            throw new Error(data.message || 'Failed to create comment reply');
+        }
+        return data;
+    } catch (error) {
+        console.error("Error creating comment reply:", error);
+        throw error;
+    }
+}
