@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchComments } from "../services/api";
+import { createNewComment, fetchComments } from "../services/api";
 import "../components/Comments.css"; // Assuming you have a CSS file for styling
 
 
@@ -12,6 +12,23 @@ const Comments = (blogId) => {
     if(localStorage.getItem('token')){
         LoggedInUser = true
     }
+
+
+    const handleNewComment = async (e) => {
+        e.preventDefault();
+        if(!newMessage.trim()) {
+            alert("Comment cannot be empty");
+            return;
+        }
+        await createNewComment(parsedBlogId, newMessage);
+
+        setNewMessage('');
+        
+        const refreshedComments = await fetchComments(parsedBlogId);
+        setComments(refreshedComments ?? []);
+
+    }
+
 
     useEffect(() => {
         const beginFetchComments = async () => {
@@ -30,7 +47,7 @@ const Comments = (blogId) => {
             <h2>Comments Section</h2>
 
             {LoggedInUser ? (
-                <form className="comment-form">
+                <form className="comment-form" onSubmit={handleNewComment}>
                 <div>
                     <label htmlFor="comment">Add a comment</label>
                     <textarea
@@ -40,6 +57,7 @@ const Comments = (blogId) => {
                     onChange={(e) => setNewMessage(e.target.value)}
                     ></textarea>
                 </div>
+                <button type="submit">Comment</button>
                 </form>
             ) : (
                 <p>Please log in to add a comment.</p>
@@ -49,7 +67,7 @@ const Comments = (blogId) => {
                 <ul className="comments-list">
                 {comments.map((comment) => (
                     <li key={comment.id}>
-                    <strong>{comment.author.userName}:</strong> {comment.message}
+                    <strong>{comment.user.userName}:</strong> {comment.message}
                     </li>
                 ))}
                 </ul>

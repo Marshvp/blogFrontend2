@@ -90,3 +90,30 @@ export async function fetchComments(blogId) {
         throw error;
     }
 }
+
+export async function createNewComment(blogId, message) {
+    if(localStorage.getItem('token') === null) {
+        throw new Error('User is not authenticated. Please log in.');
+    }
+    try {
+        const response = await fetch(`${api}/comments/create/${blogId}`, {
+            method: 'POST',
+            headers: {
+                "content-type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify({ commentMessage: message })
+        })
+        
+        const data = await response.json();
+        if(!response.ok) {
+            throw new Error(data.message || 'Failed to create comment');
+        }
+        return data;
+        
+    } catch (error) {
+        console.error("Error creating new comment:", error);
+        throw error;
+        
+    }
+}
