@@ -10,6 +10,7 @@ const SignUp = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [isAdmin, setIsAdmin] = useState(false);
+    const [adminPasword, setAdminPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
@@ -21,7 +22,7 @@ const SignUp = () => {
 
         console.log('Attempting to sign up with:', { email, username, password });
         try {
-            const { token, user } = await signUpUser(email, username, password, isAdmin);
+            const { token, user } = await signUpUser(email, username, password, isAdmin, adminPasword);
             localStorage.setItem('token', token);
             localStorage.setItem('user', JSON.stringify(user));
 
@@ -73,10 +74,19 @@ const SignUp = () => {
                     <label>IsAdmin</label>
                     <input
                         type="checkbox"
-                        value={isAdmin}
+                        checked={isAdmin}
                         onChange={(e) => setIsAdmin(e.target.checked)}
                     ></input>
                     <span>Check if you are an admin</span>
+                </div>
+                <div>
+                    <label>Admin Password (if applicable)</label>
+                    <input
+                        type="password"
+                        placeholder="Enter admin password to signing up as admin"
+                        value={adminPasword}
+                        onChange={(e) => setAdminPassword(e.target.value)}
+                    ></input>
                 </div>
                 <button type="submit">Sign Up</button>
                 {error && <p style={{ color: 'red' }}>{error}</p>}
