@@ -142,3 +142,28 @@ export async function createCommentReply(blogId, message, parentId) {
         throw error;
     }
 }
+
+export async function deleteBlogPost(blogId) {
+    const token = localStorage.getItem('token');
+    if(!token) {
+        throw new Error("User is not authenticated. Please log in.");
+    }
+    try {
+        const response = await fetch(`${api}/blogs/${blogId}`, {
+            method: 'DELETE',
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+
+        if (!response.ok) {
+            const data = await response.json();
+            throw new Error(data.message || 'Failed to delete blog post');
+        }
+
+        return { message: 'Blog post deleted successfully' };
+    } catch (error) {
+        console.error("Error deleting blog post:", error);
+        throw error;
+    }
+}

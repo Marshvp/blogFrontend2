@@ -5,6 +5,7 @@ import NavBar from "./components/NavBar";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import UploadBlog from "./pages/UploadBlog";
+import AdminManagePage from "./pages/AdminManagePage";
 
 
 
@@ -18,6 +19,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/signUp" element={<SignUp />}/>
         <Route path="/upload" element={<UploadBlog />} />
+        <Route path="/manage" element={<AdminManagePage />} />
       </Routes>
     </Router>
   );

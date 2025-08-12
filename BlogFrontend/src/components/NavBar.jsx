@@ -29,6 +29,7 @@ const NavBar = () => {
             {isLoggedIn ? (
                 <>
                 {user.isAdmin && <Link to="/upload">Upload Blog</Link>}
+                {user.isAdmin && <Link to="/manage">Manage Blogs</Link>}
                 <Link to="/" onClick={handleLogout}>LogOut</Link>
                 </>
             ) : (
